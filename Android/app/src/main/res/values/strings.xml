@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">CFC Players</string>
+    <string name="PlayerSearch">Player Search</string>
+    <string name="SearchLabel">Search:</string>
+    <string name="Search">Search</string>
+    <string name="SearchCriteria">Search Criteria</string>
+    <string name="CFCID">CFC ID</string>
+    <string name="LastName">Last Name</string>
+    <string name="FirstName">First Name</string>
+    <string name="noPlayers">No Players Found</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="searchErrorTitle">Missing Criteria</string>
+    <string name="searchError">Please enter search criteria.</string>
+    <string name="PlayerDetails">%1$d: %2$s</string>
+    <string name="placeholderString">%1$s</string>
+    <string name="placeholderInt">%1$d</string>
+    <string name="CFCIDLabel">CFC ID:</string>
+    <string name="nameLabel">Name:</string>
+    <string name="expiryLabel">CFC Expiry:</string>
+    <string name="cityProvLabel">City:</string>
+    <string name="FIDEIDLabel">FIDE ID:</string>
+    <string name="regularLabel">Regular Rating:</string>
+    <string name="quickLabel">Quick Rating:</string>
+    <string name="updatedLabel">Last Updated:</string>
+    <string name="unrated">Unrated</string>
+    <string name="unregistered">Unregistered</string>
+    <string name="noExpiry">No Expiry</string>
+    <string name="expired">Expired: %1$s</string>
+    <string name="notFideRegisteredTitle">Player Not Registered</string>
+    <string name="notFideRegisteredMessage">This player is not FIDE Registered.</string>
+    <string name="cfc">CFC</string>
+    <string name="webProfileTitle">Player\'s %1$s Web Profile</string>
+    <string name="buttonBack">Back</string>
+    <string name="buttonForward">Forward</string>
+</resources>

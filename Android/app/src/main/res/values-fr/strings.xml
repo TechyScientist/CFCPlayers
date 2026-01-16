@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Joueurs FCÉ</string>
+    <string name="PlayerSearch">Cherche des Joueurs</string>
+    <string name="SearchLabel">Cherchez:</string>
+    <string name="Search">Cherchez</string>
+    <string name="SearchCriteria">Critères de Cherche</string>
+    <string name="CFCID">ID FCÉ</string>
+    <string name="LastName">Nom de Famille</string>
+    <string name="FirstName">Prénom</string>
+    <string name="noPlayers">Aucun Joueurs Trouvé</string>
+    <string name="dismiss">Fermer</string>
+    <string name="searchErrorTitle">Critères de Cherche Manquants</string>
+    <string name="searchError">Entrez quelques critères pour chercher, s\'il vous plaît.</string>
+    <string name="PlayerDetails">%1$d: %2$s</string>
+    <string name="placeholderString">%1$s</string>
+    <string name="placeholderInt">%1$d</string>
+    <string name="CFCIDLabel">ID FCÉ:</string>
+    <string name="nameLabel">Nom:</string>
+    <string name="expiryLabel">Expiration FCÉ:</string>
+    <string name="cityProvLabel">Ville:</string>
+    <string name="FIDEIDLabel">ID FIDE:</string>
+    <string name="regularLabel">Cote Régulière:</string>
+    <string name="quickLabel">Cote Rapide:</string>
+    <string name="updatedLabel">Mise à Jour:</string>
+    <string name="unrated">Non Classé</string>
+    <string name="unregistered">Non Registré</string>
+    <string name="noExpiry">Pas d\'Éxpiration</string>
+    <string name="expired">Expiré: %1$s</string>
+    <string name="notFideRegisteredTitle">Joueur Non Registré</string>
+    <string name="notFideRegisteredMessage">Ce joueur n\'est pas registré avec FIDE.</string>
+    <string name="cfc">FCÉ</string>
+    <string name="webProfileTitle">Profil Web %1$s du Joueur</string>
+    <string name="buttonBack">Retour</string>
+    <string name="buttonForward">Suivante</string>
+</resources>
