@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  CFCPlayers
+
+  Created by Johnny Console on 2023-07-30.
+  
+*/
+"CFC ID" = "ID FCÉ";
+"Last Name" = "Patronyme";
+"First Name" = "Prenom";
+"Search" = "Cherchez";
+"No Players Found" = "Aucun Joueurs Trouvé";
+"Missing Criteria" = "Critères Manquants";
+"Please enter search criteria." = "Entrez quelques critères, s'il vous plaît.";
+"Dismiss" = "Fermer";
+"Unrated" = "Non Classé";
+"Unregistered" = "Non Registré";
+"Expired/Unregistered" = "Expiré/Non Registré";
+"Expired:" = "Expiré: ";
+"No Expiry" = "Pas d'Expiration";
+"Player Not FIDE Registered" = "Joueur Non Registré";
+"This player is not FIDE registered." = "Ce joueur n'est pas registré avec FIDE.";
+"Player's CFC Profile" = "Profil FCÉ du Joueur";
+"Player's FIDE Profile" = "Profil FIDE du Joueur";

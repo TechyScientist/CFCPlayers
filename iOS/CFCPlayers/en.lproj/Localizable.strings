@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  CFCPlayers
+
+  Created by Johnny Console on 2023-07-30.
+  
+*/
+"CFC ID" = "CFC ID";
+"Last Name" = "Last Name";
+"First Name" = "First Name";
+"Search" = "Search";
+"No Players Found" = "No Players Found";
+"Missing Criteria" = "Missing Criteria";
+"Please enter search criteria." = "Please enter search criteria.";
+"Dismiss" = "Dismiss";
+"Unrated" = "Unrated";
+"Unregistered" = "Unregistered";
+"Expired/Unregistered" = "Expired/Unregistered";
+"Expired:" = "Expired: ";
+"No Expiry" = "No Expiry";
+"Player Not FIDE Registered" = "Player Not FIDE Registered";
+"This player is not FIDE registered." = "This player is not FIDE registered.";
+"Player's CFC Profile" = "Player's CFC Profile";
+"Player's FIDE Profile" = "Player's FIDE Profile";

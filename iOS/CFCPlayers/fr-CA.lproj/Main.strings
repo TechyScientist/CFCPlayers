@@ -1,0 +1,40 @@
+
+/* PlayerSearchViewController Objects */
+// Search View Controller Navigation Item ObjectID = BYZ-38-t0r
+"WMK-Vb-hQl.title" = "Cherche des Joueurs";
+
+// Search Label ObjectID = MiC-nW-RIK
+"MiC-nW-RIK.text" = "Chercher:";
+
+// Search Criteria Text Box ObjectID = uhJ-A7-LdU
+"uhJ-A7-LdU.placeholder" = "Critères de la Cherche";
+
+/* PlayerDetailsViewController Objects */
+// Player Record Title Label ObjectID = fqy-ov-Chy
+"fqy-ov-Chy.text" = "Record de Joueur";
+
+// CFC ID Label ObjectID = LCs-vV-did
+"LCs-vV-did.text" = "ID FCÉ:";
+
+// Name Label ObjectID = WW1-aC-GkI
+"WW1-aC-GkI.text" = "Nom:";
+
+// Expiry Label ObjectID = fmq-6D-8xI
+"fmq-6D-8xI.text" = "Expiration FCÉ:";
+
+// City/Province Label ObjectID = qSd-YG-0Qb
+"qSd-YG-0Qb.text" = "Ville/Province:";
+
+// FIDE ID Label ObjectID = 1Eg-Th-XB3
+"1Eg-Th-XB3.text" = "ID FIDE:";
+
+// Regular Rating Label ObjectID = ia6-Zb-hqJ
+"ia6-Zb-hqJ.text" = "Cote Régulière:";
+
+// Quick Rating Label ObjectID = UC4-Lj-Byi
+"UC4-Lj-Byi.text" = "Cote Rapide:";
+
+// Last Updated Label ObjectID = WOe-r2-pbi
+"WOe-r2-pbi.text" = "Mise à Jour:";
+
+
