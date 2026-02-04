@@ -1,8 +1,10 @@
 package net.johnnyconsole.cfcplayers
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.LinearLayout
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +26,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
 
         with(binding) {
             setContentView(root)
-            enableEdgeToEdge()
+            enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(scrim = Color.TRANSPARENT))
 
             ViewCompat.setOnApplyWindowInsetsListener(main) { v, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
