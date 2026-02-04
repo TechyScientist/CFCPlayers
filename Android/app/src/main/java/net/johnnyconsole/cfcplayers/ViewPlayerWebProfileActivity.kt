@@ -6,6 +6,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -37,7 +38,6 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
             webView.settings.javaScriptEnabled = true
             webView.loadUrl(url)
 
-
             webView.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                     view.loadUrl(url)
@@ -57,16 +57,19 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-        }
-    }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if(binding.webView.canGoBack()) {
-            binding.webView.goBack()
-        }
-        else {
-            finish()
+            onBackPressedDispatcher.addCallback(this@ViewPlayerWebProfileActivity,
+                object: OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        if(webView.canGoBack()) {
+                            webView.goBack()
+                        }
+                        else {
+                            finish()
+                        }
+                    }
+                }
+            )
         }
     }
 
