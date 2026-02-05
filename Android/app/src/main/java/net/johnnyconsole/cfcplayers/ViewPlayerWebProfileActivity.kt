@@ -1,8 +1,10 @@
 package net.johnnyconsole.cfcplayers
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -19,6 +21,7 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewPlayerWebProfileBinding
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityViewPlayerWebProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -41,49 +44,51 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
             webView.loadUrl(url)
 
             webView.webViewClient = object : WebViewClient() {
-                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                    view.loadUrl(url)
+                override fun shouldOverrideUrlLoading(
+                    view: WebView,
+                    request: WebResourceRequest
+                ): Boolean {
+                    view.loadUrl(request.url.toString())
                     return true
                 }
 
                 override fun onReceivedError(
                     view: WebView?,
-                    errorCode: Int,
-                    description: String?,
-                    failingUrl: String?
+                    request: WebResourceRequest,
+                    error: WebResourceError
                 ) {
                     Toast.makeText(
                         this@ViewPlayerWebProfileActivity,
-                        description,
+                        error.description,
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
 
-            onBackPressedDispatcher.addCallback(this@ViewPlayerWebProfileActivity,
-                object: OnBackPressedCallback(true) {
+            onBackPressedDispatcher.addCallback(
+                this@ViewPlayerWebProfileActivity,
+                object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
-                        if(webView.canGoBack()) {
+                        if (webView.canGoBack()) {
                             webView.goBack()
-                        }
-                        else {
+                        } else {
                             finish()
                         }
                     }
                 }
             )
-        }
-    }
 
-    fun onBackClicked(view: View) {
-        if(binding.webView.canGoBack()) {
-            binding.webView.goBack()
-        }
-    }
+            btBack.setOnClickListener { _ ->
+                if (webView.canGoBack()) {
+                    webView.goBack()
+                }
+            }
 
-    fun onForwardClicked(view: View) {
-        if(binding.webView.canGoForward()) {
-            binding.webView.goForward()
+            btForward.setOnClickListener { _ ->
+                if (webView.canGoForward()) {
+                    webView.goForward()
+                }
+            }
         }
     }
 }

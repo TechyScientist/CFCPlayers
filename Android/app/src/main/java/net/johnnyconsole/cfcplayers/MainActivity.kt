@@ -5,7 +5,6 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
@@ -32,18 +31,20 @@ class MainActivity : AppCompatActivity() {
     var players = ArrayList<Player>()
     var searched: Boolean = false
 
-    inner class PlayerListAdapter(): ArrayAdapter<String>(this,
-        android.R.layout.simple_list_item_1) {
+    inner class PlayerListAdapter() : ArrayAdapter<String>(
+        this,
+        android.R.layout.simple_list_item_1
+    ) {
 
         override fun getCount(): Int {
-            return if(!searched) 0
-                   else if(players.isEmpty()) 1
-                   else players.size
+            return if (!searched) 0
+            else if (players.isEmpty()) 1
+            else players.size
         }
 
         override fun getItem(position: Int): String {
-            return if(searched && players.isEmpty()) getString(R.string.noPlayers)
-                   else "${players[position].cfcId}: ${players[position].name}"
+            return if (searched && players.isEmpty()) getString(R.string.noPlayers)
+            else "${players[position].cfcId}: ${players[position].name}"
 
         }
     }
@@ -90,84 +91,84 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
-        }
-    }
 
-    fun onSearchClicked(view: View) {
-        lifecycleScope.launch {
-            with(binding) {
+            btSearch.setOnClickListener { _ ->
+                lifecycleScope.launch {
+                    with(binding) {
 
-                if (etSearchText.text.isEmpty()) {
-                    val msgbox =
-                        AlertDialog.Builder(this@MainActivity)
-                            .setNeutralButton(R.string.dismiss, null)
-                            .setTitle(R.string.searchErrorTitle)
-                            .setMessage(R.string.searchError)
-                            .create()
-                    msgbox.show()
+                        if (etSearchText.text.isEmpty()) {
+                            val msgbox =
+                                AlertDialog.Builder(this@MainActivity)
+                                    .setNeutralButton(R.string.dismiss, null)
+                                    .setTitle(R.string.searchErrorTitle)
+                                    .setMessage(R.string.searchError)
+                                    .create()
+                            msgbox.show()
 
-                    (msgbox.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams as LinearLayout.LayoutParams).width =
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                } else {
-                    searched = true
-                    players.clear()
-                    val url = when (tlSearchField.selectedTabPosition) {
-                        0 -> {
-                            "https://server.chess.ca/api/player/v1/${etSearchText.text}"
+                            (msgbox.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams as LinearLayout.LayoutParams).width =
+                                LinearLayout.LayoutParams.MATCH_PARENT
+                        } else {
+                            searched = true
+                            players.clear()
+                            val url = when (tlSearchField.selectedTabPosition) {
+                                0 -> {
+                                    "https://server.chess.ca/api/player/v1/${etSearchText.text}"
+                                }
+
+                                2 -> {
+                                    "https://server.chess.ca/api/player/v1/find?first=${etSearchText.text}*&last="
+                                }
+
+                                else -> {
+                                    "https://server.chess.ca/api/player/v1/find?first=&last=${etSearchText.text}*"
+                                }
+
+                            }
+                            val json = playerSearch(URL(url))
+
+                            if (json.has("player")) {
+                                val player = json.getJSONObject("player")
+                                if (player.has("name_first")) {
+                                    players.add(
+                                        Player(
+                                            player.getInt("cfc_id"),
+                                            player.getString("name_last"),
+                                            player.getString("name_first"),
+                                            player.getString("cfc_expiry"),
+                                            player.getString("addr_city"),
+                                            player.getString("addr_province"),
+                                            player.getInt("fide_id"),
+                                            player.getInt("regular_rating"),
+                                            player.getInt("quick_rating"),
+                                            json.getString("updated")
+                                        )
+                                    )
+                                }
+                            } else {
+                                val playersArray = json.getJSONArray("players")
+                                for (i in 0 until playersArray.length()) {
+                                    val player = playersArray.getJSONObject(i)
+                                    players.add(
+                                        Player(
+                                            player.getInt("cfc_id"),
+                                            player.getString("name_last"),
+                                            player.getString("name_first"),
+                                            player.getString("cfc_expiry"),
+                                            player.getString("addr_city"),
+                                            player.getString("addr_province"),
+                                            player.getInt("fide_id"),
+                                            player.getInt("regular_rating"),
+                                            player.getInt("quick_rating"),
+                                            json.getString("updated")
+                                        )
+                                    )
+                                }
+                            }
                         }
 
-                        2 -> {
-                            "https://server.chess.ca/api/player/v1/find?first=${etSearchText.text}*&last="
-                        }
-
-                        else -> {
-                            "https://server.chess.ca/api/player/v1/find?first=&last=${etSearchText.text}*"
-                        }
-
-                    }
-                    val json = playerSearch(URL(url))
-
-                    if (json.has("player")) {
-                        val player = json.getJSONObject("player")
-                        if (player.has("name_first")) {
-                            players.add(
-                                Player(
-                                    player.getInt("cfc_id"),
-                                    player.getString("name_last"),
-                                    player.getString("name_first"),
-                                    player.getString("cfc_expiry"),
-                                    player.getString("addr_city"),
-                                    player.getString("addr_province"),
-                                    player.getInt("fide_id"),
-                                    player.getInt("regular_rating"),
-                                    player.getInt("quick_rating"),
-                                    json.getString("updated")
-                                )
-                            )
-                        }
-                    } else {
-                        val playersArray = json.getJSONArray("players")
-                        for (i in 0 until playersArray.length()) {
-                            val player = playersArray.getJSONObject(i)
-                            players.add(
-                                Player(
-                                    player.getInt("cfc_id"),
-                                    player.getString("name_last"),
-                                    player.getString("name_first"),
-                                    player.getString("cfc_expiry"),
-                                    player.getString("addr_city"),
-                                    player.getString("addr_province"),
-                                    player.getInt("fide_id"),
-                                    player.getInt("regular_rating"),
-                                    player.getInt("quick_rating"),
-                                    json.getString("updated")
-                                )
-                            )
-                        }
+                        (lvPlayerList.adapter as PlayerListAdapter).notifyDataSetChanged()
                     }
                 }
-
-                (lvPlayerList.adapter as PlayerListAdapter).notifyDataSetChanged()
             }
         }
     }

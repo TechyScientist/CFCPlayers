@@ -48,6 +48,7 @@
         <ImageButton
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:id="@+id/btBack"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:onClick="onBackClicked"
@@ -59,6 +60,7 @@
         <ImageButton
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:id="@+id/btForward"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:onClick="onForwardClicked"
