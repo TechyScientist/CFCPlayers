@@ -33,7 +33,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
                 v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
                 insets
             }
-            player = intent.getSerializableExtra("profile") as Player
+            player = intent.getSerializableExtra("profile", Player::class.java)!!
             title.text = getString(R.string.PlayerDetails, player.cfcId, player.name)
 
             cfcID.text = getString(R.string.placeholderInt, player.cfcId)

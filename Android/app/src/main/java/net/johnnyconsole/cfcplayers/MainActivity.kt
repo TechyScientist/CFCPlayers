@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 insets
             }
 
-            binding.tlSearchField.addOnTabSelectedListener(object :
+            tlSearchField.addOnTabSelectedListener(object :
                 TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     etSearchText.inputType = if (tab!!.position == 0) {
