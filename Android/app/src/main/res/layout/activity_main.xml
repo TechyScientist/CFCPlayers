@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,93 +8,115 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:text="@string/PlayerSearch"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:padding="20dp"
-        android:layout_marginBottom="30dp"
-        android:background="?attr/colorPrimary"
-        android:gravity="bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_margin="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBaseline_toBottomOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:text="@string/PlayerSearch"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:padding="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="?attr/colorPrimary"
+            android:gravity="bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/SearchLabel"
-            android:textColor="@color/black"
-            android:layout_marginEnd="10dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="20dp">
 
-        <com.google.android.material.tabs.TabLayout
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/SearchLabel"
+                android:textColor="@color/black"
+                android:layout_marginEnd="10dp"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tlSearchField"
+                app:tabMode="scrollable">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CFCID" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LastName" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FirstName" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tlSearchField"
-            app:tabMode="scrollable">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
-            <com.google.android.material.tabs.TabItem
+            <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/CFCID" />
+                android:layout_height="match_parent"
+                android:ems="11"
+                android:id="@+id/etSearchText"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/SearchCriteria"
+                android:autofillHints="no"
+                android:inputType="number"/>
 
-            <com.google.android.material.tabs.TabItem
+            <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/LastName" />
+                android:layout_height="match_parent"
+                android:id="@+id/btSearch"
+                android:text="@string/Search"/>
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/FirstName" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </com.google.android.material.tabs.TabLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:divider="@color/CFCRed"
+            android:dividerHeight="1dp"
+            android:id="@+id/lvPlayerList" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:id="@+id/indicator"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:indicatorSize="60dp"
+        app:trackThickness="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:ems="11"
-            android:id="@+id/etSearchText"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/SearchCriteria"
-            android:autofillHints="no"
-            android:inputType="number"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btSearch"
-            android:text="@string/Search"
-            android:onClick="onSearchClicked" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:divider="@color/CFCRed"
-        android:dividerHeight="1dp"
-        android:id="@+id/lvPlayerList" />
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
