@@ -3,6 +3,8 @@ package net.johnnyconsole.cfcplayers
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -41,14 +43,18 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
 
             val url = intent.getStringExtra("url")!!
             webView.settings.javaScriptEnabled = true
+            binding.indicator.visibility = VISIBLE
             webView.loadUrl(url)
+            binding.indicator.visibility = GONE
 
             webView.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
                     view: WebView,
                     request: WebResourceRequest
                 ): Boolean {
+                    binding.indicator.visibility = VISIBLE
                     view.loadUrl(request.url.toString())
+                    binding.indicator.visibility = GONE
                     return true
                 }
 
@@ -70,7 +76,9 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
                 object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
                         if (webView.canGoBack()) {
+                            binding.indicator.visibility = VISIBLE
                             webView.goBack()
+                            binding.indicator.visibility = GONE
                         } else {
                             finish()
                         }
@@ -80,13 +88,17 @@ class ViewPlayerWebProfileActivity : AppCompatActivity() {
 
             btBack.setOnClickListener { _ ->
                 if (webView.canGoBack()) {
+                    binding.indicator.visibility = VISIBLE
                     webView.goBack()
+                    binding.indicator.visibility = GONE
                 }
             }
 
             btForward.setOnClickListener { _ ->
                 if (webView.canGoForward()) {
+                    binding.indicator.visibility = VISIBLE
                     webView.goForward()
+                    binding.indicator.visibility = GONE
                 }
             }
         }

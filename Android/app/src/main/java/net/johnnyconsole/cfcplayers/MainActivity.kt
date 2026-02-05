@@ -5,6 +5,8 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
@@ -29,7 +31,6 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     var players = ArrayList<Player>()
-    var searched: Boolean = false
 
     inner class PlayerListAdapter() : ArrayAdapter<String>(
         this,
@@ -37,13 +38,13 @@ class MainActivity : AppCompatActivity() {
     ) {
 
         override fun getCount(): Int {
-            return if (!searched) 0
+            return if (!binding.btSearch.isEnabled) 0
             else if (players.isEmpty()) 1
             else players.size
         }
 
         override fun getItem(position: Int): String {
-            return if (searched && players.isEmpty()) getString(R.string.noPlayers)
+            return if (binding.btSearch.isEnabled && players.isEmpty()) getString(R.string.noPlayers)
             else "${players[position].cfcId}: ${players[position].name}"
 
         }
@@ -108,7 +109,8 @@ class MainActivity : AppCompatActivity() {
                             (msgbox.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams as LinearLayout.LayoutParams).width =
                                 LinearLayout.LayoutParams.MATCH_PARENT
                         } else {
-                            searched = true
+                            indicator.visibility = VISIBLE
+                            btSearch.isEnabled = false
                             players.clear()
                             val url = when (tlSearchField.selectedTabPosition) {
                                 0 -> {
@@ -167,6 +169,8 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         (lvPlayerList.adapter as PlayerListAdapter).notifyDataSetChanged()
+                        indicator.visibility = GONE
+                        btSearch.isEnabled = true
                     }
                 }
             }
