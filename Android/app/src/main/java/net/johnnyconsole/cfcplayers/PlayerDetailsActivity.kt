@@ -12,8 +12,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import net.johnnyconsole.cfcplayers.databinding.ActivityPlayerDetailsBinding
 import net.johnnyconsole.cfcplayers.objects.Player
-import java.text.SimpleDateFormat
-import java.util.Date
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class PlayerDetailsActivity : AppCompatActivity() {
@@ -42,9 +42,9 @@ class PlayerDetailsActivity : AppCompatActivity() {
             if (player.expiry.isEmpty() || player.expiry.isBlank()) {
                 expiry.text = getString(R.string.noExpiry)
             } else if (player.expiry.isNotEmpty() && player.expiry.isNotBlank()) {
-                val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.CANADA)
-                val expiryDate = formatter.parse(player.expiry)
-                val today = formatter.parse(formatter.format(Date()))
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.CANADA)
+                val expiryDate = LocalDate.parse(player.expiry, formatter)
+                val today = LocalDate.now()
 
                 if (expiryDate != null && today != null && expiryDate.year >= today.year + 5) {
                     expiry.text = getString(R.string.noExpiry)
